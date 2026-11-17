@@ -1,4 +1,4 @@
-# Harsh Recruiter CV Reviewer
+# CV Reviewer
 
 A local CV assessment application. It parses the uploaded document, classifies evidence with deterministic checks, calculates a weighted rubric in application code, and keeps a separate working copy of the CV for accepted edits.
 

@@ -6,7 +6,7 @@ load_dotenv()
 
 
 class AppConfig:
-    """Centralized configuration for Harsh Recruiter CV Reviewer & Editor."""
+    """Centralised configuration for CV Reviewer."""
 
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "").strip()
     GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash").strip()

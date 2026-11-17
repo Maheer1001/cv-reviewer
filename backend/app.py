@@ -29,7 +29,7 @@ FRONTEND = ROOT / "frontend"
 SAMPLES = ROOT / "samples"
 SESSIONS: Dict[str, SessionState] = {}
 
-app = FastAPI(title="Harsh Recruiter CV Reviewer", version="1.0.0")
+app = FastAPI(title="CV Reviewer", version="1.0.0")
 app.mount("/static", StaticFiles(directory=FRONTEND), name="static")
 
 
