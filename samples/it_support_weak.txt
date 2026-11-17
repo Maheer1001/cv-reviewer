@@ -1,0 +1,18 @@
+Jordan Blake
+jordan.blake@example.com | 07123 456789 | Birmingham
+
+Professional Summary
+Hard-working, passionate and results-driven team player who is a dynamic fast learner.
+
+Work Experience
+IT Support Technician | Northbridge College | 2023 - 2024
+• Responsible for providing IT support to staff and students.
+• Worked on the service desk and helped with tickets.
+• Duties included setting up laptops and resetting passwords.
+• Responsible for providing IT support to staff and students.
+
+Skills
+Python, Java, Kubernetes, AWS, Docker, React, Leadership, Communication, Excel, Photoshop, C++, Rust, TensorFlow, Spark, Kafka, Airflow, Terraform, Azure, GCP, GraphQL, Django
+
+Education
+BTEC IT | City College | 2021 - 2023

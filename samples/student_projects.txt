@@ -1,0 +1,15 @@
+Sam Okonkwo
+sam.okonkwo@example.com | Bristol
+https://github.com/sam-okonkwo-example
+
+Education
+BSc Computer Science | University of Bristol | 2023 - 2026
+
+Projects
+Campus Room Finder
+• Built a React and Node.js application for 1200 society room bookings, using PostgreSQL exclusion constraints to stop double booking.
+• Added Jest tests for the overlap rules and a GitHub Actions workflow that runs them on every pull request.
+• Implemented a Python pathfinder for a robotics module and compared A* with Dijkstra on 30 mapped floor plans, reducing average route length by 12% against the baseline search.
+
+Technical Skills
+JavaScript, React, Node.js, PostgreSQL, Python, Git

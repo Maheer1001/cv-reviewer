@@ -1,0 +1,22 @@
+Priya Raman
+priya.raman@example.com | 07900 111222 | London
+https://github.com/priya-raman-example
+
+Professional Summary
+Backend engineer building payment APIs in Python and PostgreSQL.
+
+Work Experience
+Software Engineer | Harbour Payments | March 2022 - Present
+• Designed a FastAPI payments service and cut callback failures from 4.2% to 0.6% by making retries idempotent and storing processed event ids in PostgreSQL.
+• Built a pytest suite covering the refund path, including 46 integration tests against a containerised database.
+• Profiled the settlement query and reduced its p95 time from 900ms to 240ms by replacing a correlated subquery with an indexed join.
+
+Projects
+Ledger Replay Tool
+• Developed a Python tool that replays 1.2m ledger events through the payments API to verify idempotency after the retry change.
+
+Technical Skills
+Python, FastAPI, PostgreSQL, Pytest, Docker
+
+Education
+BSc Computer Science | University of Leeds | 2018 - 2021

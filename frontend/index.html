@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harsh Recruiter · CV Reviewer</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">CV</div>
+      <div>Harsh Recruiter<small>Evidence-based CV review and editor</small></div>
+    </div>
+    <div class="topbar-actions">
+      <span id="engine-pill" class="badge">Local rules</span>
+      <button class="btn btn-ghost btn-sm" id="privacy-btn" type="button">Privacy</button>
+      <button class="btn btn-sm hidden" id="new-review-btn" type="button">New review</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="intake-view">
+      <div class="hero">
+        <h1>Get a recruiter's honest read on your CV</h1>
+        <p>Upload your CV. The reviewer works out which roles it fits, scores it against a transparent rubric, and shows exactly what to rewrite, what to add, and what to start doing.</p>
+      </div>
+
+      <form id="intake-form" class="intake card stack-lg" novalidate>
+        <div>
+          <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Choose a CV file">
+            <div class="dz-icon" aria-hidden="true">&#128196;</div>
+            <strong>Drop your CV here, or click to browse</strong>
+            <span class="muted small">PDF or DOCX, up to <span id="max-mb">10</span> MB</span>
+            <input id="file-input" type="file" accept=".pdf,.docx" hidden>
+          </div>
+          <div id="file-chip" class="file-chip hidden"></div>
+          <div class="divider-label">or try a fictional sample CV</div>
+          <div id="sample-chips" class="chips"></div>
+        </div>
+
+        <div>
+          <h3>Target <span class="faint">(optional)</span></h3>
+          <p class="muted small">Leave these blank and the reviewer will infer the roles your CV most resembles, then set targets and next steps for each one.</p>
+          <div class="grid-3">
+            <label class="field">Target job title
+              <input type="text" id="target-title" maxlength="120" placeholder="Leave blank to infer">
+            </label>
+            <label class="field">Career level
+              <select id="career-level">
+                <option value="auto" selected>Auto-detect from CV</option>
+                <option value="student_graduate">Student / graduate</option>
+                <option value="junior">Junior</option>
+                <option value="mid_level">Mid-level</option>
+                <option value="senior_lead">Senior / lead</option>
+                <option value="career_changer">Career changer</option>
+                <option value="executive">Executive</option>
+              </select>
+            </label>
+            <label class="field">Industry
+              <input type="text" id="target-industry" maxlength="80" placeholder="e.g. Fintech, retail">
+            </label>
+          </div>
+        </div>
+
+        <details class="disclosure" id="jd-details">
+          <summary><span>Add a job description <span class="faint">(optional; makes role suitability precise)</span></span></summary>
+          <div class="disclosure-body">
+            <textarea id="job-description" placeholder="Paste the full job advert, including essential and desirable requirements."></textarea>
+          </div>
+        </details>
+
+        <details class="disclosure">
+          <summary><span>Advanced settings <span class="faint">(rubric weights and optional AI)</span></span></summary>
+          <div class="disclosure-body stack">
+            <label class="field">Rubric preset
+              <select id="preset"></select>
+            </label>
+            <div>
+              <div class="spread"><span class="eyebrow">Rubric weights</span><span id="weights-total" class="weights-total">Total 100</span></div>
+              <div id="weights-grid" class="weights-grid"></div>
+            </div>
+            <label class="toggle"><input type="checkbox" id="use-llm"> Add Gemini semantic judgement <span class="faint" id="llm-note"></span></label>
+            <div class="grid-2">
+              <label class="field">Gemini API key<span class="hint">Held in server memory for this run only, never sent to the page again</span>
+                <input type="password" id="api-key" autocomplete="off" placeholder="Paste key">
+              </label>
+              <label class="field">Model<span class="hint">Used only when semantic judgement is on</span>
+                <select id="model"></select>
+              </label>
+            </div>
+            <div class="row"><button type="button" class="btn btn-sm" id="save-settings">Save AI settings</button></div>
+          </div>
+        </details>
+
+        <div class="spread">
+          <span class="faint">Your CV is processed in memory on this machine and is not saved to disk.</span>
+          <button type="submit" class="btn btn-primary btn-lg" id="analyse-btn" disabled>Review my CV</button>
+        </div>
+      </form>
+      <div id="stepper" class="stepper hidden" aria-live="polite"></div>
+    </section>
+
+    <section id="results-view" class="hidden">
+      <div class="result-head" id="result-head"></div>
+      <nav class="tabs" id="tabs" role="tablist"></nav>
+      <div id="panel"></div>
+    </section>
+  </main>
+
+  <footer class="site">Scores are rubric results, not predictions of interviews or offers. All sample CVs are fictional.</footer>
+  <div class="toast-wrap" id="toasts" aria-live="polite"></div>
+
+  <dialog id="privacy-dialog">
+    <h3>What happens to your CV</h3>
+    <p id="privacy-text" class="muted"></p>
+    <ul class="bullets small">
+      <li>Text extraction, evidence checks, role matching, scoring, editing and export all run locally.</li>
+      <li>Nothing is written to disk. Sessions live in server memory and disappear when the server stops.</li>
+      <li>Only if you add a Gemini key and switch semantic judgement on is the extracted text sent to Google.</li>
+    </ul>
+    <div class="row" style="justify-content: flex-end"><button class="btn btn-sm" type="button" id="privacy-close">Close</button></div>
+  </dialog>
+
+  <script src="/static/js/core.js"></script>
+  <script src="/static/js/intake.js"></script>
+  <script src="/static/js/overview.js"></script>
+  <script src="/static/js/review.js"></script>
+  <script src="/static/js/edits.js"></script>
+  <script src="/static/js/document.js"></script>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

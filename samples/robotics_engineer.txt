@@ -1,0 +1,23 @@
+Noah Adeyemi
+noah.adeyemi@example.com | 07700 900321 | Bristol
+linkedin.com/in/noah-adeyemi-example
+
+Professional Summary
+Robotics engineer building mobile robots for warehouse picking.
+
+Work Experience
+Robotics Engineer | Helio Robotics | March 2022 - Present
+• Built a ROS 2 navigation stack for a differential-drive robot, reaching a 96% goal success rate over 80 test runs.
+• Closed a PID loop on the drive motors, cutting path-tracking error from 12 cm to 3 cm.
+• Fused wheel odometry with an Intel RealSense camera for localisation, holding drift under 2% of distance travelled.
+• Validated obstacle avoidance in Gazebo before hardware, finding a sensor-delay bug that failed 1 run in 5 on the real robot.
+
+Projects
+Final-year project: 4-DOF pick and place arm
+• Designed the arm in Fusion 360, 3D-printed the links, and wrote the inverse-kinematics solver in Python.
+
+Skills
+ROS 2, Python, C++, OpenCV, Fusion 360, Gazebo
+
+Education
+MEng Robotics | University of Bristol | 2017 - 2021

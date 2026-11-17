@@ -1,0 +1,14 @@
+Alex Nguyen
+alex.nguyen@example.com | 07700 900123 | Leeds
+
+Professional Summary
+Expert in all modern technologies with a proven track record.
+
+Work Experience
+Junior Developer | Example Soft | 2024 - 2025
+• Improved performance by 95%.
+• Single-handedly revolutionised the entire platform and delivered 100% bug-free releases.
+• Worked on a web application using Laravel and improved performance.
+
+Skills
+Laravel

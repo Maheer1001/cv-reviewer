@@ -1,0 +1,20 @@
+Omar Farouk
+omar.farouk@example.com | 07700 900654 | Manchester
+linkedin.com/in/omar-farouk-example
+
+Professional Summary
+Security operations analyst triaging alerts and tuning detections for a managed SOC.
+
+Work Experience
+SOC Analyst | Redgate Security | June 2023 - Present
+• Triaged around 60 alerts a day in Splunk, escalating 8 true positives a week to incident response.
+• Tuned the impossible-travel detection, cutting false positives from 40 a day to 6.
+• Wrote a detection for suspicious PowerShell execution and validated it against an Atomic Red Team test in the lab.
+• Resolved a phishing incident affecting 12 users, containing the mailbox and resetting credentials within an hour.
+
+Skills
+Splunk, Microsoft Sentinel, MITRE ATT&CK, Python
+
+Education
+BSc Computer Science | University of Salford | 2019 - 2022
+CompTIA Security+ | 2023
