@@ -1,0 +1,16 @@
+Sam Example
+sam.example@example.com | 07700 900123 | Manchester
+
+Professional Summary
+Junior Python developer building small web APIs.
+
+Work Experience
+Software Developer | Example Ltd | June 2023 - Present
+• Built a Flask API for booking requests and cut manual data entry from 2 hours to 20 minutes a day.
+• Worked on the reporting page.
+
+Technical Skills
+Python, Flask, SQL
+
+Education
+BSc Computer Science | University of Manchester | 2020 - 2023

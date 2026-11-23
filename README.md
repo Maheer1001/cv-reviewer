@@ -108,23 +108,48 @@ Open [http://127.0.0.1:8000](http://127.0.0.1:8000). `GET /api/config` returns J
 5. **Edits** is where you answer questions and accept, edit, reject or undo each suggestion. **Revised CV** previews and exports the result. Export is blocked while `[placeholders]` remain unless you confirm them.
 6. **Reassess** rescores the revised CV with the same rubric and the same role.
 
-## Test
+## Testing
 
-PowerShell:
+There are two layers: an offline suite that anyone can run straight after `pip install`, and an opt-in setup check that proves your own `.env` and Gemini key are hooked up.
+
+### 1. Offline suite (no key, no network)
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest tests -q
+.\.venv\Scripts\python.exe -m pytest        # PowerShell
 ```
-
-bash (with the venv activated):
 
 ```bash
-python -m pytest tests -q
+python -m pytest                             # bash, venv activated
 ```
 
-The suite needs no API key and no network access.
+Settings live in `pytest.ini`. A fixture in `tests/conftest.py` blanks any configured key and replaces the Gemini client with a guard, so this suite never calls Google even if your `.env` has a real key. CI (`.github/workflows/tests.yml`) runs the same command on every push and pull request.
 
-The tests use fictional CVs in `samples/`. They check evidence ordering, quote anchoring, edit/export behaviour, document failures, that a paraphrase does not increase the impact score, that roles and career level are inferred when nothing is specified, that a stated target is honoured, that the elevation plan never invents facts, and that reassessment keeps the same role.
+What it proves:
+
+- `tests/test_engine.py`: the deterministic engine. Evidence tiers, ordering of the fictional CVs in `samples/`, quote anchoring, edits and export, document extraction failures, that a paraphrase does not raise the impact score, role and career-level inference, the elevation plan never inventing facts, and reassessment stability.
+- `tests/test_llm_and_config.py`: configuration and the Gemini integration seam, using a fake client. `.env.example` documents every variable the code reads and ships no key; runtime credential overrides; `/api/config` reports state without leaking the key and rejects unsupported models; model JSON parsing; that the request is sent with the configured key, model and JSON mode; that a good model reply produces a hybrid report; and that invalid JSON, missing subscores or an SDK error all fall back to the deterministic rubric with a note. One `xfail` test records a known labelling issue (see below).
+
+### 2. Check my setup (live, opt-in)
+
+After you have copied `.env.example` to `.env` and added `GEMINI_API_KEY`:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -m integration -v -rs     # PowerShell
+```
+
+```bash
+python -m pytest -m integration -v -rs                           # bash
+```
+
+The checks in `tests/integration/test_setup_check.py` run in order:
+
+1. **Environment loaded**: a key is configured, `GEMINI_MODEL` is one of the supported models and `MAX_UPLOAD_MB` is valid. It warns if `.env` leaves out keys from `.env.example` (they fall back to defaults).
+2. **Provider reachable**: looks up the configured model with your key, then sends one tiny prompt ("Reply with the single word OK.") and expects a non-empty reply. A wrong key or model fails here with Google's error message.
+3. **End to end**: runs a full hybrid review of the tiny bundled CV `tests/fixtures/tiny_cv.txt` and checks that the model was actually used (no fallback note), the engine and model are reported correctly, the score is 0 to 100 and equals the sum of the seven category scores, and there is a verdict and recommendations.
+
+Steps 2 and 3 make two small Gemini calls (the free tier is fine), and step 3 sends the fictional tiny CV to Google. Without a key, all three are skipped with a message saying how to configure one.
+
+Known issue recorded by the `xfail` test: if the model returns JSON with no usable subscores, the review correctly falls back to deterministic scores, but the report labels its engine "Hybrid ... reused semantic judgement" instead of "Deterministic".
 
 ## What is calculated locally
 
